@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>the psychic game / Soheil B.</title>
+</head>
+
+<body>
+
+    <div id="game">
+        <h1>the psychic game</h1>
+
+        <p>guess what letter im thinking of:</p>
+
+        <p>Wins: <span id="wins-text"><strong>0</strong></span> </p>
+
+        <br>
+        <p>Losses: <span id="losses-text"><strong>0</strong></span> </p>
+        <br>
+        <p>guesses left: <span id="guesses-left"><strong>9</strong></span></p>
+
+        <br>
+        <p>your guesses so guesses so far: <span id="userchoice-text"><strong>Nothing yet</strong></span></p>
+        <br>
+
+
+
+    </div>
+    <script type="text/javascript">
+
+
+
+        var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft = 9;
+        var guessedFar = [];
+        var computerGuess = [];
+
+
+        document.onkeyup = function (event) {
+            var compGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+            var userGuess = event.key;
+            guessedFar.push(userGuess);
+            console.log(computerGuess[0]);
+
+            if ((userGuess === computerGuess[0]) && (guessesLeft > 0)) {
+                wins++;
+                guessesLeft = 9;
+                guessedFar.length = 0;
+                computerGuess.length = 0;
+                computerGuess.push(compGuess);
+                console.log(computerGuess[0]);
+            }
+
+            else if ((userGuess !== computerGuess[0]) && (guessesLeft > 0)) {
+                guessesLeft--;
+            }
+
+            else {
+                losses++;
+                guessesLeft = 9;
+                guessedFar.length = 0;
+                computerGuess.length = 0;
+                computerGuess.push(compGuess);
+                console.log(computerGuess[0]);
+            }
+
+            document.querySelector("#wins-text").textContent = wins;
+            document.querySelector("#losses-text").textContent = losses;
+            document.querySelector("#guesses-left").textContent = guessedFar;
+            document.querySelector("#userchoice-text").textContent = computerGuess;
+        }
+
+    </script>
+</body>
+
+<!-- this took me so long i did not get to do anything with style sheets. -->
